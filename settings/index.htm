@@ -47,15 +47,15 @@
 	
 	 <script>
   function getConfigData() {
-    var tempUnits = document.getElementById('units');
+    //var tempUnits = document.getElementById('units');
     var wuAPIKey = document.getElementById('WUAPI');
  
     var options = {
-      'temp_units': tempUnits.value,
+      //'temp_units': tempUnits.value,
       'WU_API': wuAPIKey.value
     };
     // Save for next launch
-    localStorage['temp_units'] = options['temp_units'];
+    //localStorage['temp_units'] = options['temp_units'];
     localStorage['WU_API'] = options['WU_API'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
