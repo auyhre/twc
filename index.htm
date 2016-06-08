@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
+        <title></title>
+        <link rel="stylesheet" href="css/slate.css">
+    </head>
+    
+    
+    <body>
+        <form id="main-form">
+            <div class="item-container">
+                <div class="item-container-header">Temperature Units</div>
+                <div class="item-container-content">
+                    <label class="item tab-buttons">
+                        <a name="units" class="tab-button">Celsius</a>
+                        <a name="units" class="tab-button">Fahrenheit</a>
+                    </label>
+                </div>
+            </div>
+			
+			<div class="item-container">
+			  <div class="item-container-header">Weather Underground API Key</div>
+			  <div class="item-container-content">
+				<label class="item">
+				  <div class="item-input-wrapper">
+					<input type="text" class="item-input" name="WUAPI" placeholder="Input field">
+				  </div>
+				</label>
+			  </div>
+			  
+			  <div class="item-container-footer">
+				If you have an API Key for Weather Underground, type it here and Weather Underground data will be used for temperature and current conditions.  If you do not have an API Key, leave blank and OpenWeatherMap will be used for temperature and current conditions.
+			  </div>
+			</div>
+			
+            <div class="item-container">
+                <div class="button-container">
+                    <input type="button" class="item-button" value="SEND">
+                        </div>
+            </div>
+        </form>
+
+        <script type="text/javascript" src="js/slate.js"></script>
+    </body>
+	
+	 <script>
+  function getConfigData() {
+    var tempUnits = document.getElementById('units');
+    var wuAPIKey = document.getElementById('WUAPI');
+ 
+    var options = {
+      'temp_units': tempUnits.value,
+      'WU_API': wuAPIKey.value
+    };
+    // Save for next launch
+    localStorage['temp_units'] = options['temp_units'];
+    localStorage['WU_API'] = options['WU_API'];
+    console.log('Got options: ' + JSON.stringify(options));
+    return options;
+  }
+  function getQueryParam(variable, defaultValue) {
+    var query = location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    return defaultValue || false;
+  }
+ 
+  var submitButton = document.getElementById('submit_button');
+  submitButton.addEventListener('click', function() {
+    console.log('Submit');
+    // Set the return URL depending on the runtime environment
+    var return_to = getQueryParam('return_to', 'pebblejs://close#');
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+  });
+  (function() {
+    var tempUnits = document.getElementById('temp_units');
+    var wuAPIKey = document.getElementById('WU_API');
+	tempUnits.value = 1;
+	wuAPIKey.value = '';
+    // Load any previously saved configuration, if available
+    if(localStorage['temp_units']) {
+      tempUnits.value = localStorage['temp_units'];
+      wuAPIKey.value = localStorage['WU_API'];
+    } 
+  })();
+  </script>
+  
+  
+</html>
+
+
