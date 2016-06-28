@@ -1,62 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
-        <title></title>
-        <link rel="stylesheet" href="css/slate.css">
-    </head>
-    
-    
-    <body>
-        <form id="main-form">
-            <div class="item-container">
-                <div class="item-container-header">Temperature Units</div>
-                <div class="item-container-content">
-                    <label class="item tab-buttons">
-                        <a name="units" class="tab-button">Celsius</a>
-                        <a name="units" class="tab-button">Fahrenheit</a>
-                    </label>
-                </div>
-            </div>
-			
-			<div class="item-container">
-			  <div class="item-container-header">Weather Underground API Key</div>
-			  <div class="item-container-content">
-				<label class="item">
-				  <div class="item-input-wrapper">
-					<input type="text" class="item-input" name="WUAPI" placeholder="Input field">
-				  </div>
-				</label>
-			  </div>
-			  
-			  <div class="item-container-footer">
-				If you have an API Key for Weather Underground, type it here and Weather Underground data will be used for temperature and current conditions.  If you do not have an API Key, leave blank and OpenWeatherMap will be used for temperature and current conditions.
-			  </div>
-			</div>
-			
-            <div class="item-container">
-                <div class="button-container">
-                    <input id='submit_button' type="button" class="item-button" value="SEND">
-                        </div>
-            </div>
-        </form>
+<html>
+  <head>
+  <title>TWC Configuration</title>
+  <link rel='stylesheet' type='text/css' href='css/slate.min.css'>
+  <script src='js/slate.min.js'></script>
+  <style>
+  .title {
+    padding: 15px 10px;
+    text-transform: uppercase;
+    font-family: 'PT Sans', sans-serif;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #888888;
+    text-align: center;
+  }
+  </style>
+  </head>
 
-        <script type="text/javascript" src="js/slate.js"></script>
-    </body>
-	
-	 <script>
+  <body>
+    <h1 class='title'>TWC Configuration</h1>=
+
+    <div class='item-container'>
+      <div class='item-container-header'>Accessibility</div>
+      <div class='item-container-content'>
+        <label class='item'>
+          High Contrast Mode
+          <input id='high_contrast_checkbox' type='checkbox' class='item-toggle'>
+        </label>
+      </div>
+      <div class='item-container-footer'>
+        This switches the app colors to a higher contrast set that promotes readability in low light.
+      </div>
+    </div>
+
+    <div class='item-container'>
+      <div class='button-container'>
+        <input id='submit_button' type='button' class='item-button' value='SAVE'>
+      </div>
+    </div>
+  </body>
+  <script>
   function getConfigData() {
-    var tempUnits = document.getElementById('units');
-    var wuAPIKey = document.getElementById('WUAPI');
+    var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
  
     var options = {
-      'temp_units': tempUnits.value,
-      'WU_API': wuAPIKey.value
+      'high_contrast': highContrastCheckbox.checked
     };
     // Save for next launch
-    localStorage['temp_units'] = options['temp_units'];
-    localStorage['WU_API'] = options['WU_API'];
+    localStorage['high_contrast'] = options['high_contrast'];
     console.log('Got options: ' + JSON.stringify(options));
     return options;
   }
@@ -80,19 +71,11 @@
     document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
   });
   (function() {
-    var tempUnits = document.getElementById('units');
-    var wuAPIKey = document.getElementById('WU_API');
-	tempUnits.value = 1;
-	wuAPIKey.value = '';
+    var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
     // Load any previously saved configuration, if available
-    if(localStorage['temp_units']) {
-      tempUnits.value = localStorage['temp_units'];
-      wuAPIKey.value = localStorage['WU_API'];
-    } 
+    if(localStorage['high_contrast']) {
+      highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
+    }
   })();
   </script>
-  
-  
 </html>
-
-
