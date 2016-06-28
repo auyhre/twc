@@ -56,7 +56,7 @@
  
     var options = {
       'high_contrast': highContrastCheckbox.checked,
-      'units': getTabIndex('tab-1')
+      'units': getTabIndex('tab-1') + 'hi'
     };
     // Save for next launch
     localStorage['high_contrast'] = options['high_contrast'];
@@ -80,7 +80,7 @@
     console.log('Submit');
     // Set the return URL depending on the runtime environment
     var return_to = getQueryParam('return_to', 'pebblejs://close#');
-    //document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
+    document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));
   });
   (function() {
     var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
