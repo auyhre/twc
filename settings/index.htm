@@ -88,6 +88,7 @@
     // Load any previously saved configuration, if available
     if(localStorage['high_contrast']) {
       highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
+      setTabIndex('tab-1',1);
     }
   })();
   
@@ -101,6 +102,14 @@
         }
       }
     }
+  }
+  
+  function setTabIndex(elementName, index) {
+    var tabs = document.getElementsByName(elementName);
+    for(var t = 0; t < tabs.length; t++) {
+      tabs[t].removeClass('active');
+    }
+    tabs[index].addClas('active');
   }
   
   </script>
