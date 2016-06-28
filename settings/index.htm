@@ -53,10 +53,11 @@
   function getConfigData() {
     var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
     var unitsTab = document.getElementsByName('tab-1');
+    var unitIndex = getTabIndex('tab-1');
  
     var options = {
       'high_contrast': highContrastCheckbox.checked,
-      'units': 11
+      'units': 11 + unitIndex
     };
     // Save for next launch
     localStorage['high_contrast'] = options['high_contrast'];
