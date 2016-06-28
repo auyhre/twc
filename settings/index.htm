@@ -32,6 +32,16 @@
         This switches the app colors to a higher contrast set that promotes readability in low light.
       </div>
     </div>
+    
+    <div class="item-container">
+    <div class="item-container-header">Tab Buttons</div>
+    <div class="item-container-content">
+      <div class="item tab-buttons">
+        <a name="tab-1" class="tab-button active">Fahrenheit</a>
+        <a name="tab-1" class="tab-button">Celcius</a>
+      </div>
+    </div>
+  </div>
 
     <div class='item-container'>
       <div class='button-container'>
@@ -42,9 +52,11 @@
   <script>
   function getConfigData() {
     var highContrastCheckbox = document.getElementById('high_contrast_checkbox');
+    var unitsTab = document.getElementById('tab-1');
  
     var options = {
-      'high_contrast': highContrastCheckbox.checked
+      'high_contrast': highContrastCheckbox.checked,
+      'units': unitsTab.value
     };
     // Save for next launch
     localStorage['high_contrast'] = options['high_contrast'];
