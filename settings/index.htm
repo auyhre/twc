@@ -107,9 +107,9 @@
   function setTabIndex(elementName, index) {
     var tabs = document.getElementsByName(elementName);
     for(var t = 0; t < tabs.length; t++) {
-      tabs[t].removeClass('active');
+      tabs[t].className = "tab-button";
     }
-    tabs[index].addClass('active');
+    tabs[index].className = "tab-button active";
   }
   
   </script>
