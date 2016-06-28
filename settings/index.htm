@@ -57,7 +57,7 @@
  
     var options = {
       'high_contrast': highContrastCheckbox.checked,
-      'units': 11 + unitIndex
+      'units': unitIndex
     };
     // Save for next launch
     localStorage['high_contrast'] = options['high_contrast'];
@@ -92,7 +92,7 @@
   })();
   
   function getTabIndex(elementName) {
-    var tabs = document.getElementsByName("elementName");
+    var tabs = document.getElementsByName(elementName);
     for(var t = 0; t < tabs.length; t++) {
       var tbclasses = tabs[t].className.split(" ");
       for(var i = 0; i < tbclasses.length; i++) {
