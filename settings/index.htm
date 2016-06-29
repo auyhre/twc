@@ -81,7 +81,7 @@
             var backgroundColor = document.getElementById('background_color');
             var foregroundColor = document.getElementById('foreground_color');
             var unitIndex = getTabIndex('tab-units');
-            var WUAPIKey = getElementById('wu_api-key');
+            var WUAPIKey = document.getElementById('wu_api-key');
             
             var options = {
                 'dynamic_temperature_background': dynamicTemperatureBackgroundCheckbox.checked,
@@ -122,7 +122,7 @@
            var dynamicTemperatureBackgroundCheckbox = document.getElementById('dynamic_temperature_background');
            var backgroundColor = document.getElementById('background_color');
            var foregroundColor = document.getElementById('foreground_color');
-           var WUAPIKey = getElementById('wu_api-key');
+           var WUAPIKey = document.getElementById('wu_api-key');
            // Load any previously saved configuration, if available
            if(localStorage['dynamic_temperature_background']) {
                 dynamicTemperatureBackgroundCheckbox.checked = JSON.parse(localStorage['dynamic_temperature_background']);
