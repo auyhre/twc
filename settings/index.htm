@@ -126,10 +126,10 @@
            // Load any previously saved configuration, if available
            if(localStorage['dynamic_temperature_background']) {
                 dynamicTemperatureBackgroundCheckbox.checked = JSON.parse(localStorage['dynamic_temperature_background']);
-                backgroundColor.value = localStorage['dynamic_temperature_background'];
-                foregroundColor.value = localStorage['dynamic_temperature_background'];
-                setTabIndex('tab-units',localStorage['dynamic_temperature_background']);
-                WUAPIKey.value = localStorage['dynamic_temperature_background'];
+                backgroundColor.value = localStorage['background_color'];
+                foregroundColor.value = localStorage['foreground_color'];
+                setTabIndex('tab-units',localStorage['units']);
+                WUAPIKey.value = localStorage['wu_api'];
            }
            })();
                                            
