@@ -139,7 +139,7 @@
                 foregroundColor.value = localStorage['foreground_color'];
                 setTabIndex('tab-units',localStorage['units']);
                 WUAPIKey.value = localStorage['wu_api_key'];
-                vibrateDisconnectCheckbox.checked = localStorage['vibrate_disconnect_checkbox'];
+                vibrateDisconnectCheckbox.checked = JSON.parse(localStorage['vibrate_disconnect_checkbox']);
            } else {
                 dynamicTemperatureBackgroundCheckbox.checked = true;
                 backgroundColor.value = '0x000000';
