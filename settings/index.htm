@@ -44,7 +44,7 @@
         </div>
         
         <div class="item-container">
-            <div class="item-container-header">Tab Buttons</div>
+            <div class="item-container-header">Temperature Units</div>
             <div class="item-container-content">
                 <div class="item tab-buttons">
                     <a name="tab-units" class="tab-button active">Fahrenheit</a>
@@ -54,9 +54,16 @@
         </div>
         
         <div class="item-container">
+            <div class='item-container-content'>
+                <label class='item'>
+                    Vibrate on Disconnect
+                    <input id='vibrate_disconnect_checkbox' type='checkbox' class='item-toggle'>
+                        </label>
+            </div>
             <div class="item-container-header">Weather Underground API Key</div>
             <div class="item-container-content">
                 <label class="item">
+                    WU API
                     <div class="item-input-wrapper">
                         <input id="wu_api_key" type="text" class="item-input" name="input-1" placeholder="Input field">
                             </div>
@@ -128,6 +135,12 @@
                 foregroundColor.value = localStorage['foreground_color'];
                 setTabIndex('tab-units',localStorage['units']);
                 WUAPIKey.value = localStorage['wu_api_key'];
+           } else {
+                dynamicTemperatureBackgroundCheckbox.checked = true;
+                backgroundColor.value = '0x000000';
+                foregroundColor.value = '0xFFFFFF';
+                setTabIndex('tab-units',0);
+                WUAPIKey.value = "";
            }
            })();
                                            
