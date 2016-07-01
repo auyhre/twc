@@ -44,26 +44,26 @@
         </div>
         
         <div class="item-container">
-            <div class="item-container-header">Temperature Units</div>
+            <div class="item-container-header">Watch Settings</div>
             <div class="item-container-content">
                 <div class="item tab-buttons">
                     <a name="tab-units" class="tab-button active">Fahrenheit</a>
-                    <a name="tab-units" class="tab-button">Celcius</a>
+                    <a name="tab-units" class="tab-button">Celsius</a>
                 </div>
             </div>
-        </div>
-        
-        <div class="item-container">
+            
             <div class='item-container-content'>
                 <label class='item'>
                     Vibrate on Disconnect
                     <input id='vibrate_disconnect_checkbox' type='checkbox' class='item-toggle'>
                         </label>
             </div>
+        </div>
+        
+        <div class="item-container">
             <div class="item-container-header">Weather Underground API Key</div>
             <div class="item-container-content">
                 <label class="item">
-                    WU API
                     <div class="item-input-wrapper">
                         <input id="wu_api_key" type="text" class="item-input" name="input-1" placeholder="Input field">
                             </div>
@@ -87,13 +87,15 @@
             var foregroundColor = document.getElementById('foreground_color');
             var unitIndex = getTabIndex('tab-units');
             var WUAPIKey = document.getElementById('wu_api_key');
+            var vibrateDisconnectCheckbox = document.getElementById('vibrate_disconnect_checkbox');
             
             var options = {
                 'dynamic_temperature_background': dynamicTemperatureBackgroundCheckbox.checked,
                 'background_color': background_color.value,
                 'foreground_color': foreground_color.value,
                 'units': unitIndex,
-                'wu_api_key': WUAPIKey.value
+                'wu_api_key': WUAPIKey.value,
+                'vibrate_disconnect_checkbox': vibrateDisconnectCheckbox.value
             };
             // Save for next launch
             localStorage['dynamic_temperature_background'] = options['dynamic_temperature_background'];
@@ -101,6 +103,7 @@
             localStorage['foreground_color'] = options['foreground_color'];
             localStorage['units'] = options['units'];
             localStorage['wu_api_key'] = options['wu_api_key'];
+            localStorage['vibrate_disconnect_checkbox'] = options['vibrate_disconnect_checkbox'];
             console.log('Got options: ' + JSON.stringify(options));
             return options;
         }
@@ -128,6 +131,7 @@
            var backgroundColor = document.getElementById('background_color');
            var foregroundColor = document.getElementById('foreground_color');
            var WUAPIKey = document.getElementById('wu_api_key');
+           var vibrateDisconnectCheckbox = document.getElementById('vibrate_disconnect_checkbox');
            // Load any previously saved configuration, if available
            if(localStorage['dynamic_temperature_background']) {
                 dynamicTemperatureBackgroundCheckbox.checked = JSON.parse(localStorage['dynamic_temperature_background']);
@@ -135,12 +139,14 @@
                 foregroundColor.value = localStorage['foreground_color'];
                 setTabIndex('tab-units',localStorage['units']);
                 WUAPIKey.value = localStorage['wu_api_key'];
+                vibrateDisconnectCheckbox.checked = localStorage['vibrate_disconnect_checkbox'];
            } else {
                 dynamicTemperatureBackgroundCheckbox.checked = true;
                 backgroundColor.value = '0x000000';
                 foregroundColor.value = '0xFFFFFF';
                 setTabIndex('tab-units',0);
                 WUAPIKey.value = "";
+                vibrateDisconnectCheckbox.checked = true;
            }
            })();
                                            
